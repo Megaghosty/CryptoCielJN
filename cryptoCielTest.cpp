@@ -36,8 +36,24 @@ int main()
 	NSA.chargementClefsPublic("NSC_publ1c.pem");
 	NSA.chiffreDansFichier("1010101", "test2.txt");
 
-	
+	RsaGestion Hyb;
+	AesGestion Hybd;
 
+	Hybd.GenerateAESKey();
+	Hybd.SaveAESKeyToFile("maclefdesessionJN.txt");
+	
+	
+	Hyb.chargementClefsPrive("NSC_pr1v.pem");
+	Hyb.chargementClefsPublic("NSC_publ1c.pem");
+	Hyb.chiffrementFichier("maclefdesessionJN.txt,", "maclefchiffreAES.txt", 2048);
+
+
+	Hyb.dechiffrementFichier("maclefchiffreAES.txt", "NewClefAES.txt",2048);
+
+	Hybd.LoadAESKeyFromFile("NewClefAES.txt");
+	Hybd.EncryptFileAES256("testAesRSA.txt","testENcryptchiffreAES.txt");
+	Hybd.DecryptFileAES256("testENcryptchiffreAES.txt", "test10.txt");
+	
 	return 0;
 	
 }
