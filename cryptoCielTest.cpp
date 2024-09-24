@@ -30,6 +30,13 @@ int main()
 	std::string micode = "test1.txt";
 	std::cout << Fbi.dechiffreFichier(micode) << std::endl;
 	
+	RsaGestion NSA;
+	NSA.generationClef("NSC_publ1c.pem", "NSC_pr1v.pem", 2048);
+	NSA.chargementClefsPrive("NSC_pr1v.pem");
+	NSA.chargementClefsPublic("NSC_publ1c.pem");
+	NSA.chiffreDansFichier("1010101", "test2.txt");
+
+	
 
 	return 0;
 	
